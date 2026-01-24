@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from datetime import timedelta
+import os
 from pathlib import Path
 
 import dj_database_url
@@ -92,8 +93,12 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-      default='postgresql://postgres:1234@127.0.0.1:5434/employee-db',
+        default=os.environ.get(
+            'DATABASE_URL',
+            'postgresql://postgres:1234@127.0.0.1:5434/employee-db'
+        ),
         conn_max_age=600,
+        ssl_require=not DEBUG
     )
 }
 
