@@ -6,7 +6,7 @@ from rest_framework.permissions import AllowAny
 
 
 class SignupAPIView(APIView):
-    permission_classes = [AllowAny]
+    # permission_classes = [AllowAny]
 
     def post(self, request):
         serializer = SignupSerializer(data=request.data)
